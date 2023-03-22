@@ -10,10 +10,11 @@
   ],
   "bugs": {
     "url": "https://github.com/mahajanyogesh/final-capstone-project/issues",
-    "email": "plamen@athlonsofia.com"
+    "email": "ymahajan@adobe.com"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
+    "babel-loader": "^9.1.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.5.1",

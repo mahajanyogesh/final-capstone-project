@@ -2,5 +2,5 @@ import '../scss/app.scss';
 
 /* Your JS Code goes here */
 
-/* Demo JS */
-import './demo.js';
+/* Site JS */
+import './site.js';

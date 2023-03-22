@@ -12,6 +12,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const environment = require('./configuration/environment');
 
+
 const templateFiles = fs.readdirSync(environment.paths.source)
   .filter((file) => ['.html', '.ejs'].includes(path.extname(file).toLowerCase())).map((filename) => ({
     input: filename,
@@ -70,6 +71,12 @@ module.exports = {
         },
       },
     ],
+    loaders: [
+      // the url-loader uses DataUrls.
+      // the file-loader emits files.
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+    ]
   },
   optimization: {
     minimizer: [
