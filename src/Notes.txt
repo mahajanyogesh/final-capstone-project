@@ -1,0 +1,62 @@
+ // example clothing items
+  const shirt = new Clothing(1, 4.5, 10.99, 8.99, ['S', 'M', 'L'], 'Clothing', ['Shirt', 'Casual']);
+  const pants = new Clothing(2, 4.2, 24.99, 19.99, ['30', '32', '34'], 'Clothing', ['Pants', 'Casual']);
+  
+  // add product info to HTML
+  const product1Div = document.createElement('div');
+  product1Div.innerHTML = `
+    <h3>${shirt.category}</h3>
+    <p>${shirt.tags.join(', ')}</p>
+    <p>Rating: ${shirt.rating}</p>
+    <p>Price: ${shirt.price}</p>
+    <p>Discounted Price: ${shirt.discountedPrice}</p>
+    <label for="shirt-size">Size:</label>
+    <select id="shirt-size">
+      ${shirt.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+    </select>
+    <button id="add-to-cart-1">Add to Cart</button>
+  `;
+  
+  const product2Div = document.createElement('div');
+  product2Div.innerHTML = `
+    <h3>${pants.category}</h3>
+    <p>${pants.tags.join(', ')}</p>
+    <p>Rating: ${pants.rating}</p>
+    <p>Price: ${pants.price}</p>
+    <p>Discounted Price: ${pants.discountedPrice}</p>
+    <label for="pants-size">Size:</label>
+    <select id="pants-size">
+      ${pants.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+    </select>
+    <button id="add-to-cart-2">Add to Cart</button>
+  `;
+  
+  const productsContainer = document.getElementById('products-container');
+  productsContainer.appendChild(product1Div);
+  productsContainer.appendChild(product2Div);
+  
+  // add items to cart on button click
+  const cart = new ShoppingCart();
+  const addToCart1Button = document.getElementById('add-to-cart-1');
+  addToCart1Button.addEventListener('click', () => {
+    const selectedSize = document.getElementById('shirt-size').value;
+    const item = { ...shirt, size: selectedSize };
+    cart.addItem(item);
+    updateCartCount();
+  });
+  
+  const addToCart2Button = document.getElementById('add-to-cart-2');
+  addToCart2Button.addEventListener('click', () => {
+    const selectedSize = document.getElementById('pants-size').value;
+    const item = { ...pants, size: selectedSize };
+    cart.addItem(item);
+    updateCartCount();
+  });
+  
+  // update cart count in HTML
+  const updateCartCount = () => {
+    const cartCount = document.getElementById('cart-count');
+    cartCount.textContent = cart.items.length;
+  };
+  updateCartCount();
+  
